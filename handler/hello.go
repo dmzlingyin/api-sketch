@@ -1,21 +1,28 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"api-sketch/biz"
+	"github.com/gin-gonic/gin"
+)
 
 type HelloHandler struct {
 	Hello gin.HandlerFunc `method:"get" path:"/hello"`
 }
 
-func NewHelloHandler() *HelloHandler {
-	h := &helloHandler{}
+func NewHelloHandler(hb biz.HelloBiz) *HelloHandler {
+	h := &helloHandler{
+		hb: hb,
+	}
 	return &HelloHandler{
 		Hello: h.Hello,
 	}
 }
 
 type helloHandler struct {
+	hb biz.HelloBiz
 }
 
 func (h *helloHandler) Hello(c *gin.Context) {
-	c.JSON(0, "world")
+	res := h.hb.Hello()
+	c.JSON(0, res)
 }
