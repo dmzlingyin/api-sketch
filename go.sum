@@ -15,6 +15,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dmzlingyin/utils v0.0.0-20240330054716-02b155ba1f7d h1:6prxzdPRNtBlQkH8r3k+G4+OXxfR9WvjWI/E59kRqvA=
 github.com/dmzlingyin/utils v0.0.0-20240330054716-02b155ba1f7d/go.mod h1:fwTL1TaV8EsIGEUo/x4m0qmVeeTuAtFqbUkiMTVw5Ho=
+github.com/dmzlingyin/utils v0.0.0-20240403155528-0abe977f0483 h1:c1wspbNYT4OdtTeD2QBVQOgc4Nk8xFmJY50b79vxIww=
+github.com/dmzlingyin/utils v0.0.0-20240403155528-0abe977f0483/go.mod h1:Qt96sw7JWjh3cyF6q009CsVHI6t4yhzBT6wKnbyM4PU=
 github.com/gabriel-vasile/mimetype v1.4.3 h1:in2uUcidCuFcDKtdcBxlR0rJ1+fsokWf+uqxgUFjbI0=
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:d8uq/6HKRL6CGdk+aubisF/M5GcPfT7nKyLpA0lbSSk=
 github.com/gin-contrib/cors v1.7.1 h1:s9SIppU/rk8enVvkzwiC2VK3UZ/0NNGsWfUKvV55rqs=

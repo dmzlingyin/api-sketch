@@ -3,7 +3,7 @@ module api-sketch
 go 1.21.5
 
 require (
-	github.com/dmzlingyin/utils v0.0.0-20240330054716-02b155ba1f7d
+	github.com/dmzlingyin/utils v0.0.0-20240403155528-0abe977f0483
 	github.com/gin-contrib/cors v1.7.1
 	github.com/gin-gonic/gin v1.9.1
 )
