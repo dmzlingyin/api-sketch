@@ -6,8 +6,8 @@ import (
 )
 
 type HelloHandler struct {
-	Hello gin.HandlerFunc `method:"get" path:"/hello"`
-	Ping  gin.HandlerFunc `method:"post" path:"/ping"`
+	Hello gin.HandlerFunc `method:"post" path:"/hello"`
+	Ping  gin.HandlerFunc `method:"get" path:"/ping"`
 }
 
 func NewHelloHandler(hb biz.HelloBiz) *HelloHandler {
@@ -25,8 +25,15 @@ type helloHandler struct {
 }
 
 func (h *helloHandler) Hello(c *gin.Context) {
-	res := h.hb.Hello()
-	c.JSON(0, res)
+	ctx, cancel := createContext()
+	defer cancel()
+
+	if err := h.hb.Hello(ctx, "alice"); err != nil {
+		c.JSON(1, nil)
+	}
+	c.JSON(0, map[string]any{
+		"code": 0,
+	})
 }
 
 func (h *helloHandler) Ping(c *gin.Context) {

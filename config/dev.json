@@ -2,5 +2,9 @@
   "app":{
     "name": "api-sketch",
     "port": ":8080"
+  },
+  "mongo": {
+    "uri": "mongodb://192.168.7.251:27017",
+    "database": "test"
   }
 }
