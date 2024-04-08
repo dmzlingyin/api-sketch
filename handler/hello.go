@@ -25,19 +25,39 @@ type helloHandler struct {
 }
 
 func (h *helloHandler) Hello(c *gin.Context) {
+	var args struct {
+		Name string `json:"name"`
+	}
+	if err := c.Bind(&args); err != nil {
+		c.JSON(200, nil)
+		return
+	}
+
 	ctx, cancel := createContext()
 	defer cancel()
 
-	if err := h.hb.Hello(ctx, "alice"); err != nil {
-		c.JSON(1, nil)
+	if err := h.hb.Hello(ctx, args.Name); err != nil {
+		c.JSON(200, nil)
+		return
 	}
-	c.JSON(0, map[string]any{
+	c.JSON(200, map[string]any{
 		"code": 0,
 	})
 }
 
 func (h *helloHandler) Ping(c *gin.Context) {
+	ctx, cancel := createContext()
+	defer cancel()
+
+	name := c.Query("name")
+	id, err := h.hb.Ping(ctx, name)
+	if err != nil {
+		c.JSON(200, err.Error())
+		return
+	}
 	c.JSON(0, map[string]any{
 		"message": "pong",
+		"name":    name,
+		"id":      id,
 	})
 }

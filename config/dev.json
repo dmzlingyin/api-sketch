@@ -4,7 +4,7 @@
     "port": ":8080"
   },
   "mongo": {
-    "uri": "mongodb://192.168.7.251:27017",
+    "uri": "mongodb://root:root@192.168.7.251:27017",
     "database": "test"
   }
 }
