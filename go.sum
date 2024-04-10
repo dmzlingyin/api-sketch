@@ -13,8 +13,8 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/dmzlingyin/utils v0.0.0-20240407125523-ac54ea0c8c78 h1:LeBZWu5fMjbmJ8c5X9u7WY48pDylKpYqFlUqTSrRkag=
-github.com/dmzlingyin/utils v0.0.0-20240407125523-ac54ea0c8c78/go.mod h1:Qt96sw7JWjh3cyF6q009CsVHI6t4yhzBT6wKnbyM4PU=
+github.com/dmzlingyin/utils v0.0.0-20240410073652-61de92e62132 h1:8qGPiZcw+lrcb+7jUzcuSuVQDkU/l7Tfen99segH37g=
+github.com/dmzlingyin/utils v0.0.0-20240410073652-61de92e62132/go.mod h1:Qt96sw7JWjh3cyF6q009CsVHI6t4yhzBT6wKnbyM4PU=
 github.com/gabriel-vasile/mimetype v1.4.3 h1:in2uUcidCuFcDKtdcBxlR0rJ1+fsokWf+uqxgUFjbI0=
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:d8uq/6HKRL6CGdk+aubisF/M5GcPfT7nKyLpA0lbSSk=
 github.com/gin-contrib/cors v1.7.1 h1:s9SIppU/rk8enVvkzwiC2VK3UZ/0NNGsWfUKvV55rqs=

@@ -15,6 +15,6 @@ func Router() *gin.Engine {
 	r.Use(cors.New(cors.Config{AllowAllOrigins: true}))
 
 	g := r.Group("/api")
-	router.Register(g, "hello")
+	router.Register(g, "handler.", "hello")
 	return r
 }

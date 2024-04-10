@@ -3,9 +3,10 @@ module api-sketch
 go 1.21.5
 
 require (
-	github.com/dmzlingyin/utils v0.0.0-20240407125523-ac54ea0c8c78
+	github.com/dmzlingyin/utils v0.0.0-20240410073652-61de92e62132
 	github.com/gin-contrib/cors v1.7.1
 	github.com/gin-gonic/gin v1.9.1
+	go.mongodb.org/mongo-driver v1.14.0
 )
 
 require (
@@ -38,7 +39,6 @@ require (
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
-	go.mongodb.org/mongo-driver v1.14.0 // indirect
 	golang.org/x/arch v0.7.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
