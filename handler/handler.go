@@ -14,7 +14,7 @@ func init() {
 }
 
 func createContext() (context.Context, context.CancelFunc) {
-	return context.WithTimeout(context.Background(), 3*time.Minute)
+	return context.WithTimeout(context.Background(), 30*time.Second)
 }
 
 func response(c *gin.Context, err error, data any) {

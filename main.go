@@ -2,12 +2,15 @@ package main
 
 import (
 	"api-sketch/router"
+	"context"
 	"errors"
 	"fmt"
 	"github.com/dmzlingyin/utils/config"
 	"github.com/dmzlingyin/utils/log"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -26,9 +29,22 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	log.Infof("server listening on %s", port)
+	go func() {
+		log.Infof("server listening on %s", port)
+		if err := s.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			log.Errorf("server exited!!! err: %s", err)
+		}
+	}()
 
-	if err := s.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-		log.Errorf("server exited!!! err: %s", err)
+	quit := make(chan os.Signal)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	log.Info("shutdown server ...")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := s.Shutdown(ctx); err != nil {
+		log.Errorf("server shutdown err: %s", err)
 	}
+	log.Info("server exiting")
 }
