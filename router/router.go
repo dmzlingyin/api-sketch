@@ -7,14 +7,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Router() *gin.Engine {
-	gin.SetMode(gin.DebugMode)
+func Router(profile string) *gin.Engine {
+	if profile == "prd" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(cors.New(cors.Config{AllowAllOrigins: true}))
 
 	g := r.Group("/api")
-	router.Register(g, "handler.", "hello")
+	register(g)
 	return r
+}
+
+func register(g *gin.RouterGroup) {
+	const prefix = "handler."
+	router.Register(g, prefix, "hello")
 }

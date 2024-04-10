@@ -12,14 +12,15 @@ import (
 )
 
 func main() {
-	if p := os.Getenv("PROFILE"); p != "" {
+	var p string
+	if p = os.Getenv("PROFILE"); p != "" {
 		config.SetProfile(fmt.Sprintf("config/%s.json", p))
 	}
 
 	port := config.Get("app.port").String()
 	s := &http.Server{
 		Addr:           port,
-		Handler:        router.Router(),
+		Handler:        router.Router(p),
 		ReadTimeout:    5 * time.Minute,
 		WriteTimeout:   5 * time.Minute,
 		MaxHeaderBytes: 1 << 20,
