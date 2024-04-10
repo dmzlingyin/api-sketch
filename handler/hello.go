@@ -29,7 +29,7 @@ func (h *helloHandler) Hello(c *gin.Context) {
 		Name string `json:"name"`
 	}
 	if err := c.Bind(&args); err != nil {
-		c.JSON(200, nil)
+		response(c, err, nil)
 		return
 	}
 
@@ -37,12 +37,10 @@ func (h *helloHandler) Hello(c *gin.Context) {
 	defer cancel()
 
 	if err := h.hb.Hello(ctx, args.Name); err != nil {
-		c.JSON(200, nil)
+		response(c, err, nil)
 		return
 	}
-	c.JSON(200, map[string]any{
-		"code": 0,
-	})
+	response(c, nil, nil)
 }
 
 func (h *helloHandler) Ping(c *gin.Context) {
@@ -52,10 +50,10 @@ func (h *helloHandler) Ping(c *gin.Context) {
 	name := c.Query("name")
 	id, err := h.hb.Ping(ctx, name)
 	if err != nil {
-		c.JSON(200, err.Error())
+		response(c, err, nil)
 		return
 	}
-	c.JSON(0, map[string]any{
+	response(c, nil, map[string]any{
 		"message": "pong",
 		"name":    name,
 		"id":      id,
