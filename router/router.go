@@ -2,6 +2,7 @@ package router
 
 import (
 	_ "api-sketch/handler"
+	"api-sketch/middleware"
 	"github.com/dmzlingyin/utils/router"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,7 @@ func Router(profile string) *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(cors.New(cors.Config{AllowAllOrigins: true}))
+	r.Use(middleware.Auth())
 
 	g := r.Group("/api")
 	register(g)

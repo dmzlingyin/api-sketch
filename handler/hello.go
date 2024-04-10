@@ -47,6 +47,8 @@ func (h *helloHandler) Ping(c *gin.Context) {
 	ctx, cancel := createContext()
 	defer cancel()
 
+	user, _ := c.Get("user")
+
 	name := c.Query("name")
 	id, err := h.hb.Ping(ctx, name)
 	if err != nil {
@@ -54,8 +56,8 @@ func (h *helloHandler) Ping(c *gin.Context) {
 		return
 	}
 	response(c, nil, map[string]any{
-		"message": "pong",
-		"name":    name,
-		"id":      id,
+		"user": user,
+		"name": name,
+		"id":   id,
 	})
 }
