@@ -28,19 +28,17 @@ func (h *helloHandler) Hello(c *gin.Context) {
 	var args struct {
 		Name string `json:"name"`
 	}
-	if err := c.Bind(&args); err != nil {
-		response(c, err, nil)
+	if err := c.Bind(&args); handleError(c, err) {
 		return
 	}
 
 	ctx, cancel := createContext()
 	defer cancel()
 
-	if err := h.hb.Hello(ctx, args.Name); err != nil {
-		response(c, err, nil)
+	if err := h.hb.Hello(ctx, args.Name); handleError(c, err) {
 		return
 	}
-	response(c, nil, nil)
+	response(c, nil)
 }
 
 func (h *helloHandler) Ping(c *gin.Context) {
@@ -48,14 +46,12 @@ func (h *helloHandler) Ping(c *gin.Context) {
 	defer cancel()
 
 	user, _ := c.Get("user")
-
 	name := c.Query("name")
 	id, err := h.hb.Ping(ctx, name)
-	if err != nil {
-		response(c, err, nil)
+	if handleError(c, err) {
 		return
 	}
-	response(c, nil, map[string]any{
+	response(c, map[string]any{
 		"user": user,
 		"name": name,
 		"id":   id,
