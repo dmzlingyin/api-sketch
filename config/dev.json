@@ -5,6 +5,7 @@
   },
   "mongo": {
     "uri": "mongodb://root:root@192.168.7.251:27017",
-    "database": "test"
+    "database": "test",
+    "tx_enabled": false
   }
 }
