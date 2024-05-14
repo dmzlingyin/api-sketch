@@ -3,10 +3,10 @@ module api-sketch
 go 1.21.5
 
 require (
-	github.com/dmzlingyin/utils v0.0.0-20240410073652-61de92e62132
+	github.com/dmzlingyin/utils v0.0.0-20240514083752-2875686e8c8f
 	github.com/gin-contrib/cors v1.7.1
 	github.com/gin-gonic/gin v1.9.1
-	go.mongodb.org/mongo-driver v1.14.0
+	go.mongodb.org/mongo-driver v1.15.0
 )
 
 require (
