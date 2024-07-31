@@ -10,6 +10,7 @@ type HelloHandler struct {
 	Hello        gin.HandlerFunc `method:"post" path:"/hello"`
 	Ping         gin.HandlerFunc `method:"get" path:"/ping"`
 	HelloService gin.HandlerFunc `method:"get" path:"/hello-service"`
+	Greeting     gin.HandlerFunc `method:"post" path:"/greeting"`
 }
 
 func NewHelloHandler(hb biz.HelloBiz) *HelloHandler {
@@ -21,6 +22,7 @@ func NewHelloHandler(hb biz.HelloBiz) *HelloHandler {
 		Hello:        h.Hello,
 		Ping:         h.Ping,
 		HelloService: h.HelloService,
+		Greeting:     h.Greeting,
 	}
 }
 
@@ -64,15 +66,15 @@ func (h *helloHandler) Ping(c *gin.Context) {
 }
 
 func (h *helloHandler) HelloService(c *gin.Context) {
-	ctx, cancel := createContext()
-	defer cancel()
-
 	var args struct {
 		Name string `form:"name"`
 	}
 	if err := c.BindQuery(&args); handleError(c, err) {
 		return
 	}
+
+	ctx, cancel := createContext()
+	defer cancel()
 
 	res, err := h.hs.SayHello(ctx, &proto.HelloRequest{Name: args.Name})
 	if handleError(c, err) {
@@ -81,4 +83,15 @@ func (h *helloHandler) HelloService(c *gin.Context) {
 	response(c, map[string]any{
 		"res": res.Message,
 	})
+}
+
+func (h *helloHandler) Greeting(c *gin.Context) {
+	ctx, cancel := createContext()
+	defer cancel()
+
+	_, err := h.hs.Greeting(ctx, &proto.Empty{})
+	if handleError(c, err) {
+		return
+	}
+	response(c, nil)
 }

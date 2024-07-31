@@ -1,0 +1,7 @@
+syntax = "proto3";
+package service_sketch;
+option go_package = "/proto";
+
+message Empty {
+}
+

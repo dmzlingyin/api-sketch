@@ -37,6 +37,7 @@ func NewHelloServiceEndpoints() []*api.Endpoint {
 
 type HelloService interface {
 	SayHello(ctx context.Context, in *HelloRequest, opts ...client.CallOption) (*HelloResponse, error)
+	Greeting(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error)
 }
 
 type helloService struct {
@@ -61,15 +62,27 @@ func (c *helloService) SayHello(ctx context.Context, in *HelloRequest, opts ...c
 	return out, nil
 }
 
+func (c *helloService) Greeting(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "HelloService.Greeting", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for HelloService service
 
 type HelloServiceHandler interface {
 	SayHello(context.Context, *HelloRequest, *HelloResponse) error
+	Greeting(context.Context, *Empty, *Empty) error
 }
 
 func RegisterHelloServiceHandler(s server.Server, hdlr HelloServiceHandler, opts ...server.HandlerOption) error {
 	type helloService interface {
 		SayHello(ctx context.Context, in *HelloRequest, out *HelloResponse) error
+		Greeting(ctx context.Context, in *Empty, out *Empty) error
 	}
 	type HelloService struct {
 		helloService
@@ -84,4 +97,8 @@ type helloServiceHandler struct {
 
 func (h *helloServiceHandler) SayHello(ctx context.Context, in *HelloRequest, out *HelloResponse) error {
 	return h.HelloServiceHandler.SayHello(ctx, in, out)
+}
+
+func (h *helloServiceHandler) Greeting(ctx context.Context, in *Empty, out *Empty) error {
+	return h.HelloServiceHandler.Greeting(ctx, in, out)
 }

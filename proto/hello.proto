@@ -2,6 +2,8 @@ syntax = "proto3";
 package service_sketch;
 option go_package = "/proto";
 
+import "common.proto";
+
 message HelloRequest {
   string name = 1;
 }
@@ -12,4 +14,5 @@ message HelloResponse {
 
 service HelloService {
   rpc SayHello(HelloRequest) returns (HelloResponse);
+  rpc Greeting(Empty) returns (Empty);
 }
